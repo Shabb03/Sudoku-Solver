@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0 user-scalable=no">
+    <title>Sudoku</title>
+
+    <link rel="stylesheet" href="sudoku.css">
+    <script src="sudoku.js"></script>
+</head>
+
+<body>
+    <h1>Sudoku</h1>
+    <hr>
+    <br>
+    <input type="range" id="rangeSlider" min="1" max="100" value="50" class="slider">
+    <p>Speed: <span id="sliderValue">50</span></p>
+    <div id="board"></div>
+    <h3 id="errorTitle"></h3>
+    <div class="button-container">
+        <button id="checkGameButton">Check</button>
+        <button id="solveGameButton">Solve</button>
+        <button id="setGameButton">Reset</button>
+    </div>
+
+</body>
+
+</html>
