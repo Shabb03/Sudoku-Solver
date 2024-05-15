@@ -10,6 +10,8 @@ var sudokuBoard = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 7, 4],
 [0, 0, 5, 2, 0, 6, 3, 0, 0]];
 
+const boardLength = sudokuBoard.length;
+
 var ogBoard = JSON.parse(JSON.stringify(sudokuBoard));
 
 window.onload = function () {
@@ -23,8 +25,8 @@ function setGame() {
     const boardDiv = document.getElementById("board");
     boardDiv.innerHTML = '';
 
-    for (let r = 0; r < 9; r++) {
-        for (let c = 0; c < 9; c++) {
+    for (let r = 0; r < boardLength; r++) {
+        for (let c = 0; c < boardLength; c++) {
             let tile = document.createElement("div");
             tile.id = r.toString() + "-" + c.toString();
             if (ogBoard[r][c] !== 0) {
@@ -78,8 +80,8 @@ function removeErrors() {
 
 function checkGame() {
     let complete = true;
-    for (let r = 0; r < 9; r++) {
-        for (let c = 0; c < 9; c++) {
+    for (let r = 0; r < boardLength; r++) {
+        for (let c = 0; c < boardLength; c++) {
             const currentTile = sudokuBoard[r][c];
             if (currentTile === 0) {
                 complete = false;
@@ -108,13 +110,13 @@ function completeGrid() {
 }
 
 function correctNumber(board, input, row, col) {
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < boardLength; i++) {
         if (i !== col && board[row][i] === input) {
             return false;
         }
     }
 
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < boardLength; i++) {
         if (i !== row && board[i][col] === input) {
             return false;
         }
@@ -170,8 +172,8 @@ async function solveSudoku(board) {
     let row = -1;
     let col = -1;
     let isEmpty = true;
-    for (let i = 0; i < 9; i++) {
-        for (let j = 0; j < 9; j++) {
+    for (let i = 0; i < boardLength; i++) {
+        for (let j = 0; j < boardLength; j++) {
             if (board[i][j] === 0) {
                 row = i;
                 col = j;
@@ -188,7 +190,7 @@ async function solveSudoku(board) {
         return true;
     }
 
-    for (let num = 1; num <= 9; num++) {
+    for (let num = 1; num <= boardLength; num++) {
         const correctNum = correctNumber(board, num, row, col);
         const box = correctBox(board, num, row, col);
         if (correctNum && box) {
